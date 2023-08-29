@@ -225,7 +225,7 @@ export default function Home() {
     setAudio(new Audio()) // only call client
   })
 
-  const { height, width } = window.screen;
+  const { height, width } = screen;
   const isPortrait = height > width;
 
   if(isPortrait) {
