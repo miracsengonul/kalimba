@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react"
+
 import Image from "next/image";
 
 export default function Home() {
@@ -224,6 +225,13 @@ export default function Home() {
     setAudio(new Audio()) // only call client
   })
 
+  const { height, width } = window.screen;
+  const isPortrait = height > width;
+
+  if(isPortrait) {
+    alert("Please turn the screen to landscape.")
+  }
+
   return (
       <div className="h-screen grid">
         <div className="flex space-x-[1vw] lg:space-x-[15px] transition-all">
@@ -253,7 +261,7 @@ export default function Home() {
           <Image src={"/kalimba.png"} width={64} height={64} alt=""/>
         </div>
         <div className="flex items-center justify-center mt-12 space-x-4 select-none">
-          <p className="text-3xl">Our Playlist</p>
+          <p className="text-3xl text-black">Our Playlist</p>
         </div>
           <div className="flex items-center justify-between w-full select-none">
             <div className="flex justify-center w-full mt-10">
@@ -270,14 +278,14 @@ export default function Home() {
                   className={`flex flex-col mr-2 justify-center items-center hover:opacity-90 space-y-4 ${selectedSongNote && song.note !== selectedSongNote ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
                 >
                 <Image src={`/song-covers/${song.coverImage}`} width={90} height={90} alt="" className="object-cover h-full rounded-lg shadow-xl"/>
-                <p className="font-normal">{song.name}</p>
+                <p className="font-normal text-black">{song.name}</p>
             </div>
             ))}
             </div>
           </div>
         <form onSubmit={playNotes} className="mt-20 flex justify-center flex-col px-3 py-2">
             <div className="flex items-center justify-center space-x-2">
-              <h1>Auto Note Play</h1>
+              <h1 className="text-black">Auto Note Play</h1>
               <span className="hidden h-auto w-auto px-2 rounded-full border-black border-2 bg-white border-1 border-solid justify-center items-center">ℹ</span>
             </div>
             <div className="mt-2 flex items-center justify-center rounded-lg">
