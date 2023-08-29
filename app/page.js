@@ -223,14 +223,16 @@ export default function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setAudio(new Audio()) // only call client
+
+    const { height, width } = window.screen;
+    const isPortrait = height > width;
+
+    if(isPortrait) {
+      alert("Please turn the screen to landscape.")
+    }
   })
 
-  const { height, width } = screen;
-  const isPortrait = height > width;
-
-  if(isPortrait) {
-    alert("Please turn the screen to landscape.")
-  }
+  
 
   return (
       <div className="h-screen grid">
@@ -243,7 +245,7 @@ export default function Home() {
               }} 
               className= {
                 `${currentPressedNote === note.number + note.letter + note.dot ? 'opacity-70 animatecss-shakeY' : ''}
-                kalimba-key landscape:w-8 landscape:lg:w-10 pt-12 rounded-br-2xl rounded-bl-2xl transition-all text-2xl pb-2 hover:opacity-90 cursor-pointer bg-gradient-to-t from-stone-700 to-indigo-600 
+                kalimba-key landscape:w-8 landscape:lg:w-9 pt-12 rounded-br-2xl rounded-bl-2xl transition-all text-2xl pb-2 hover:opacity-90 cursor-pointer bg-gradient-to-t from-stone-700 to-indigo-600 
                 text-white font-bold text-center animatecss active:animatecss-shakeY select-none flex flex-col items-center 
                 justify-end`
               } 
