@@ -136,7 +136,7 @@ export default function Home() {
   const [selectedSongNote, setSelectedSongNote] = useState('');
   const [selectedSongTempo, setSelectedSongTempo] = useState(400);
   const [selectedSongEllipsisDuration, setSelectedSongEllipsisDuration] = useState(800);
-  const [audio, setAudio] = useState(new Audio())
+  const [audio, setAudio] = useState(null)
 
   const playNotes = (event = null, song = null) => {
     if(event) {
@@ -199,10 +199,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    setAudio(new Audio())
     if(selectedSongNote) {
-      audio.pause()
-      audio.currentTime = 0
       playNotes(null, selectedSongNote)
     }
     
@@ -217,6 +214,11 @@ export default function Home() {
     });
    
   }, [audio])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setAudio(new Audio()) // only call client
+  })
 
   return (
       <div className="h-screen grid">
