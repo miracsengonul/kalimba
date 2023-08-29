@@ -207,11 +207,15 @@ export default function Home() {
   }, [selectedSongNote]);
 
   useEffect(() => {
-    window.addEventListener('ended', () => {
-      setSelectedSongNote('')
-      setSelectedSongTempo(400);
-      setSelectedSongEllipsisDuration(800)
-    });
+    setTimeout(() => {
+      if(audio) {
+        audio.addEventListener('ended', () => {
+          setSelectedSongNote('')
+          setSelectedSongTempo(400);
+          setSelectedSongEllipsisDuration(800)
+        });
+      }
+    }, 100)
    
   }, [audio])
 
