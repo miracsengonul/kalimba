@@ -136,8 +136,7 @@ export default function Home() {
   const [selectedSongNote, setSelectedSongNote] = useState('');
   const [selectedSongTempo, setSelectedSongTempo] = useState(400);
   const [selectedSongEllipsisDuration, setSelectedSongEllipsisDuration] = useState(800);
-
-  const audio = new Audio();
+  const [audio, setAudio] = useState(new Audio())
 
   const playNotes = (event = null, song = null) => {
     if(event) {
@@ -200,6 +199,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    setAudio(new Audio())
     if(selectedSongNote) {
       audio.pause()
       audio.currentTime = 0
@@ -209,11 +209,14 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSongNote]);
 
-  audio.addEventListener('ended', () => {
-    setSelectedSongNote('')
-    setSelectedSongTempo(400);
-    setSelectedSongEllipsisDuration(800)
-  });
+  useEffect(() => {
+    window.addEventListener('ended', () => {
+      setSelectedSongNote('')
+      setSelectedSongTempo(400);
+      setSelectedSongEllipsisDuration(800)
+    });
+   
+  }, [audio])
 
   return (
       <div className="h-screen grid">
