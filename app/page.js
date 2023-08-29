@@ -241,7 +241,7 @@ export default function Home() {
             <div 
               onClick={() => playAudio(index)}
               style={{
-                height:  index <= notes.length / 2 ? `calc(40vh + ${index * 20}px)` :  `calc(40vh + ${(notes.length / 2) * 20}px - ${ 0 - (index * 20 - (index - notes.length /2  + index) * 20)}px)`,
+                height:  index <= notes.length / 2 ? `calc(30vh + ${index * 20}px)` :  `calc(30vh + ${(notes.length / 2) * 20}px - ${ 0 - (index * 20 - (index - notes.length /2  + index) * 20)}px)`,
               }} 
               className= {
                 `${currentPressedNote === note.number + note.letter + note.dot ? 'opacity-70 animatecss-shakeY' : ''}
